@@ -23,7 +23,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Separator } from "@/components/ui/separator"
 import { Calendar, Check, ChartNoAxesColumn } from "lucide-react";
 
-export default function AccountForm() {
+export default function AccountForm({ current, setCurrent }: { current: number, setCurrent: (value: number) => void }) {
     return (
         <div>
             <div className="grid grid-cols-3 gap-2">
@@ -67,7 +67,7 @@ export default function AccountForm() {
                                     </FieldContent>
                                 </Field>
                                 <Field orientation="responsive">
-                                    <Button type="submit" className="bg-green-700 hover:bg-green-800 text-white">
+                                    <Button onClick={() => setCurrent(1)} className="bg-green-700 hover:bg-green-800 text-white">
                                         Create Account
                                     </Button>
                                 </Field>
@@ -100,7 +100,7 @@ export default function AccountForm() {
                                         <p className="text-xs">Two people can never take the same slot.</p>
                                     </div>
                                 </div>
-                                 <div className="flex items-center gap-1 mb-3">
+                                <div className="flex items-center gap-1 mb-3">
                                     <div className="flex items-center justify-center rounded-md bg-green-700 size-6">
                                         <ChartNoAxesColumn className="size-4" />
                                     </div>

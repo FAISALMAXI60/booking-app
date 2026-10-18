@@ -2,14 +2,16 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-
 import { Check } from "lucide-react";
+
 import AccountForm from "./components/account-form";
 import Navbar from "../../Components/Navbar";
+import BusinessForm from "./components/business-form";
+import Services from "./components/services";
 
 const steps = [
     { title: "Account", description: "Your Account" },
-    { title: "business", description: "About you" },
+    { title: "Business", description: "About you" },
     { title: "Services", description: "services" },
     { title: "Hours", description: "hours" },
 ];
@@ -44,12 +46,10 @@ export default function Stepper() {
                         </li>
                     ))}
                 </ol>
-
-                {/* Content */}
                 <div>
-                    {current === 0 && <AccountForm />}
-                    {current === 1 && <p>Business form here</p>}
-                    {current === 2 && <p>Services form here</p>}
+                    {current === 0 && <AccountForm setCurrent={setCurrent} current={current} />}
+                    {current === 1 && <BusinessForm setCurrent={setCurrent} current={current} />}
+                    {current === 2 && <Services setCurrent={setCurrent} current={current} />}
                     {current === 3 && <p>Hours form here</p>}
                 </div>
             </div>
