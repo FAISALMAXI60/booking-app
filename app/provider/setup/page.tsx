@@ -8,6 +8,8 @@ import AccountForm from "./components/account-form";
 import Navbar from "../../Components/Navbar";
 import BusinessForm from "./components/business-form";
 import Services from "./components/services";
+import Hours from "./components/hours";
+import PageLive from "./components/setup-done";
 
 const steps = [
     { title: "Account", description: "Your Account" },
@@ -23,34 +25,36 @@ export default function Stepper() {
         <div>
             <Navbar />
             <div className="lg:mx-20 p-6 space-y-8">
-                {/* Indicators */}
-                <ol className="flex items-center">
-                    {steps.map((step, i) => (
-                        <li key={step.title} className="flex flex-1 items-center last:flex-none">
-                            <div className="flex flex-col items-center gap-1">
-                                <div
-                                    className={cn(
-                                        "flex size-9 items-center justify-center rounded-full border-2 text-sm font-medium",
-                                        i < current && "bg-green-700 border-green-700 text-primary-foreground",
-                                        i === current && "border-green-700 text-green-700",
-                                        i > current && "border-green-700 text-green-700"
-                                    )}
-                                >
-                                    {i < current ? <Check className="size-4" /> : i + 1}
+                {current !== 4 &&
+                    <ol className="flex items-center">
+                        {steps.map((step, i) => (
+                            <li key={step.title} className="flex flex-1 items-center last:flex-none">
+                                <div className="flex flex-col items-center gap-1">
+                                    <div
+                                        className={cn(
+                                            "flex size-9 items-center justify-center rounded-full border-2 text-sm font-medium",
+                                            i < current && "bg-green-700 border-green-700 text-primary-foreground",
+                                            i === current && "border-green-700 text-green-700",
+                                            i > current && "border-green-700 text-green-700"
+                                        )}
+                                    >
+                                        {i < current ? <Check className="size-4" /> : i + 1}
+                                    </div>
+                                    <span className="text-xs font-medium text-green-700">{step.title}</span>
                                 </div>
-                                <span className="text-xs font-medium text-green-700">{step.title}</span>
-                            </div>
-                            {i < steps.length - 1 && (
-                                <div className={cn("mx-2 h-0.5 flex-1", i < current ? "bg-green-700" : "bg-muted")} />
-                            )}
-                        </li>
-                    ))}
-                </ol>
+                                {i < steps.length - 1 && (
+                                    <div className={cn("mx-2 h-0.5 flex-1", i < current ? "bg-green-700" : "bg-muted")} />
+                                )}
+                            </li>
+                        ))}
+                    </ol>
+                }
                 <div>
                     {current === 0 && <AccountForm setCurrent={setCurrent} current={current} />}
                     {current === 1 && <BusinessForm setCurrent={setCurrent} current={current} />}
                     {current === 2 && <Services setCurrent={setCurrent} current={current} />}
-                    {current === 3 && <p>Hours form here</p>}
+                    {current === 3 && <Hours setCurrent={setCurrent} current={current} />}
+                    {current === 4 && <PageLive setCurrent={setCurrent} current={current} />}
                 </div>
             </div>
         </div>
